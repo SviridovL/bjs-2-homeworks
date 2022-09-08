@@ -18,25 +18,32 @@ function solveEquation(a, b, c) {
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
   let totalAmount;
-  percent = Number(percent);
-  contribution = Number(contribution);
-  amount = Number(amount);
-  if (isNaN(percent)|| (typeof percent === 'undefined') {
-    alert(`Процентная ставка содержит неправильное значение ${percent}`);
-  } else if (isNaN(contribution)|| (typeof contribution === 'undefined') {
-    alert(`Процентная ставка содержит неправильное значение ${contribution}`);
-  } else if (isNaN(amount)||(typeof amount === 'undefined') {
-    alert(`Процентная ставка содержит неправильное значение ${amount}`);
+  let mistake;
+
+  if (isNaN(percent)) {
+    mistake = `Параметр "Процентная ставка" содержит неправильное значение "${percent}"`;
+    return mistake;
+  } else if (isNaN(contribution)) {
+    mistake = `Параметр "Начальный взнос" содержит неправильное значение "${contribution}"`;
+    return mistake;
+  } else if (isNaN(amount)) {
+    mistake = `Параметр "Общая стоимость" содержит неправильное значение "${amount}"`;
+    return mistake;
   } else {
     let creditBody = amount - contribution;
-    let start = Date.now();
-    let elapsedTime = date - start;
-    elapsedTime = elapsedTime / (1000 * 60 * 60 * 24 * 30);
-    let P = ((1 / 12) * percent) / 100;
-    let monthlyPayment = creditBody * (P + P / ((1 + P) ** elapsedTime - 1));
-    totalAmount = monthlyPayment * elapsedTime;
-    totalAmount = totalAmount.toFixed(2);
 
-    return totalAmount;
+    let start = new Date();
+
+    let diff =
+      date.getMonth() -
+      start.getMonth() +
+      12 * (date.getFullYear() - start.getFullYear());
+
+    let P = ((1 / 12) * percent) / 100;
+    let monthlyPayment = creditBody * (P + P / ((1 + P) ** diff - 1));
+    totalAmount = monthlyPayment * diff;
+
+    console.log(totalAmount.toFixed(2));
+    return +totalAmount.toFixed(2);
   }
 }
