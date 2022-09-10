@@ -1,7 +1,12 @@
 function compareArrays(arr1, arr2) {
   let result;
+  console.log(arr1, arr2);
+  if (arr1.length !== arr2.length) return (result = false);
 
-  // Ваш код
+  function isEqual(element) {
+    return arr1[element] === arr2[element];
+  }
+  result = arr1.every(isEqual);
 
   return result; // boolean
 }
