@@ -6,21 +6,24 @@ class PrintEditionItem {
     this.state = 100;
     this.type = null;
   }
-  set realState(tempState) {
+  set state(tempState) {
     if (tempState <= 0) {
-      this.state = 0;
+      this._state = 0;
     } else if (tempState >= 100) {
-      this.state = 100;
+      this._state = 100;
     } else {
-      this.state = tempState;
+      this._state = tempState;
     }
   }
-  get realState() {
-    return this.state;
+  get state() {
+    return this._state;
   }
 
   fix() {
-    const tempState = this.state * 1.5;
+    let tempState;
+    this.state = this.state * 1.5;
+    //return (tempState = this.state * 1.5);
+    tempState = this.state;
     return tempState;
   }
 }
