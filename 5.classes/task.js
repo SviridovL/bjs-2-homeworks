@@ -22,7 +22,6 @@ class PrintEditionItem {
   fix() {
     let tempState;
     this.state = this.state * 1.5;
-    //return (tempState = this.state * 1.5);
     tempState = this.state;
     return tempState;
   }
@@ -89,5 +88,26 @@ class Library {
     this.books.splice(ind, 1);
     console.log(this.books);
     return requestedBook;
+  }
+}
+
+class Student {
+  constructor(fullName) {
+    this.name = fullName;
+    this.subjects = [];
+  }
+
+  addMark(mark, subj) {
+    let obj = { subject: subj, value: [mark] };
+    if (!this.subjects.find((item) => item.subject === subj)) {
+      this.subjects.push(obj);
+    } else {
+      for (let i = 0; i < this.subjects.length; i++) {
+        console.log(this.subjects[i]);
+        if (this.subjects[i].subject === subj) {
+          this.subjects[i].value.push(mark);
+        }
+      }
+    }
   }
 }
