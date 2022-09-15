@@ -103,11 +103,29 @@ class Student {
       this.subjects.push(obj);
     } else {
       for (let i = 0; i < this.subjects.length; i++) {
-        console.log(this.subjects[i]);
         if (this.subjects[i].subject === subj) {
           this.subjects[i].value.push(mark);
         }
       }
+    }
+  }
+
+  getAverageBySubject(subj) {
+    const index = this.subjects.findIndex((item) => item.subject === subj);
+    if (index === -1) {
+      return console.log(`Несуществующий предмет`);
+    } else {
+      const average = this.subjects[index].value.reduce(
+        (acc, item, idx, arr) => {
+          if (idx === this.subjects[index].value.length - 1) {
+            return (acc + item) / this.subjects[index].value.length;
+          } else {
+            return acc + item;
+          }
+        }
+      );
+      console.log(`Средний балл по предмету  ${subj} ${average}`);
+      return average;
     }
   }
 }

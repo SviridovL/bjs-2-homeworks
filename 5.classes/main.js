@@ -50,11 +50,18 @@ library.giveBookByName("Машина времени");
 console.log("Количество книг после выдачи: " + library.books.length); //Количество книг после выдачи: 3
 
 const student = new Student("Олег Никифоров");
+// student.addMark(5, "algebra");
+// student.addMark(5, "algebra");
+// student.addMark(5, "geometry");
+// student.addMark(4, "geometry");
+// student.addMark(4, "biology");
+// student.addMark(3, "geometry");
+// student.addMark(5, "algebra");
+// student.addMark(2, "biology");
+// student.getAverageBySubject("geometry"); // Средний балл по предмету geometry 4.5
+// student.getAverageBySubject("biology"); // Несуществующий предмет
+// student.getAverageBySubject("algebra"); // Средний балл по предмету geometry 4.5
+// student.getAverageBySubject("medicine"); // Несуществующий предмет
+student.addMark(3, "algebra");
 student.addMark(5, "algebra");
-student.addMark(5, "algebra");
-student.addMark(5, "geometry");
-student.addMark(4, "geometry");
-student.addMark(4, "biology");
-student.addMark(3, "geometry");
-student.addMark(5, "algebra");
-student.addMark(2, "biology");
+student.getAverageBySubject("algebra");
