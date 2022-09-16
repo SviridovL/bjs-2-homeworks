@@ -62,6 +62,24 @@ const student = new Student("Олег Никифоров");
 // student.getAverageBySubject("biology"); // Несуществующий предмет
 // student.getAverageBySubject("algebra"); // Средний балл по предмету geometry 4.5
 // student.getAverageBySubject("medicine"); // Несуществующий предмет
-student.addMark(3, "algebra");
+// student.addMark(3, "algebra");
+// student.addMark(5, "algebra");
+// student.getAverageBySubject("algebra");
+
 student.addMark(5, "algebra");
-student.getAverageBySubject("algebra");
+student.addMark(5, "algebra");
+student.addMark(5, "geometry");
+student.addMark(4, "geometry");
+student.addMark(7, "algebra");
+student.addMark(5, "algebra");
+student.addMark(5, "algebra");
+student.addMark(5, "geometry");
+student.addMark(4, "geometry");
+student.addMark(4, "biology");
+student.addMark(3, "geometry");
+student.addMark(5, "algebra");
+student.addMark(2, "biology");
+student.addMark(6, "geometry"); // "Ошибка, оценка должна быть числом от 1 до 5"
+student.getAverageBySubject("geometry"); // Средний балл по предмету geometry 4.5
+student.getAverageBySubject("biology"); // Несуществующий предмет
+student.getAverage(); // Средний балл по всем предметам 4.75

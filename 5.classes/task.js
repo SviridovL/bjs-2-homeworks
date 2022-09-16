@@ -99,12 +99,16 @@ class Student {
 
   addMark(mark, subj) {
     let obj = { subject: subj, value: [mark] };
-    if (!this.subjects.find((item) => item.subject === subj)) {
-      this.subjects.push(obj);
+    if (mark > 5 || mark < 1) {
+      return console.log(`Ошибка, оценка должна быть числом от 1 до 5`);
     } else {
-      for (let i = 0; i < this.subjects.length; i++) {
-        if (this.subjects[i].subject === subj) {
-          this.subjects[i].value.push(mark);
+      if (!this.subjects.find((item) => item.subject === subj)) {
+        this.subjects.push(obj);
+      } else {
+        for (let i = 0; i < this.subjects.length; i++) {
+          if (this.subjects[i].subject === subj) {
+            this.subjects[i].value.push(mark);
+          }
         }
       }
     }
@@ -127,5 +131,22 @@ class Student {
       console.log(`Средний балл по предмету  ${subj} ${average}`);
       return average;
     }
+  }
+
+  getAverage() {
+    let numberElements = 0;
+    let sum = 0;
+    for (let i = 0; i < this.subjects.length; i++) {
+      sum =
+        sum +
+        this.subjects[i].value.reduce(function (accumulator, currentValue) {
+          return accumulator + currentValue;
+        });
+
+      numberElements = this.subjects[i].value.length + numberElements;
+    }
+    let average = sum / numberElements;
+    console.log(`Средний балл  ${average}`);
+    return average;
   }
 }
