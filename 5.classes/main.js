@@ -80,6 +80,8 @@ student.addMark(3, "geometry");
 student.addMark(5, "algebra");
 student.addMark(2, "biology");
 student.addMark(6, "geometry"); // "Ошибка, оценка должна быть числом от 1 до 5"
+student.addMarks("algebra", 4, 5, 4, 5, 5, 55);
+
 student.getAverageBySubject("geometry"); // Средний балл по предмету geometry 4.5
 student.getAverageBySubject("biology"); // Несуществующий предмет
 student.getAverage(); // Средний балл по всем предметам 4.75

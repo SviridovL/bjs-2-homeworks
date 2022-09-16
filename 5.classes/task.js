@@ -114,6 +114,29 @@ class Student {
     }
   }
 
+  addMarks(subj, ...mark) {
+    let obj = { subject: subj, value: [mark] };
+    // if (mark > 5 || mark < 1) {
+    //   return console.log(`Ошибка, оценка должна быть числом от 1 до 5`);
+    // } else {
+    if (!this.subjects.find((item) => item.subject === subj)) {
+      this.subjects.push(obj);
+    } else {
+      for (let i = 0; i < this.subjects.length; i++) {
+        if (this.subjects[i].subject === subj) {
+          mark.forEach((mark) => {
+            if (mark > 5 || mark < 1) {
+              return console.log(`Ошибка, оценка должна быть числом от 1 до 5`);
+            } else {
+              this.subjects[i].value.push(mark);
+            }
+          });
+          console.log(this.subjects);
+        }
+      }
+    }
+  }
+
   getAverageBySubject(subj) {
     const index = this.subjects.findIndex((item) => item.subject === subj);
     if (index === -1) {
@@ -146,7 +169,7 @@ class Student {
       numberElements = this.subjects[i].value.length + numberElements;
     }
     let average = sum / numberElements;
-    console.log(`Средний балл  ${average}`);
-    return average;
+    console.log(`Средний балл  ${average.toFixed(2)}`);
+    return average.toFixed(2);
   }
 }
