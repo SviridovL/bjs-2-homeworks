@@ -7,15 +7,15 @@ class AlarmClock {
     if (Id === undefined) {
       throw new Error("Id не задан");
       return;
-    } else if (this.timerId === Id) {
+    }
+    if (this.alarmCollection.find((item) => item.subject === Id)) {
       console.error("Такой Id уже задан");
-      return;
     } else {
       let alarm = { subject: Id, value: time, result: result };
-      //this.timerId.push(Id);
       this.alarmCollection.push(alarm);
     }
   }
+
   removeClock(Id) {
     let startLength = this.alarmCollection.length;
     let indx = this.alarmCollection.indexOf(Id);
@@ -36,13 +36,20 @@ class AlarmClock {
     }
     {
       if (this.timerId === null) {
-        this.timerId = setInterval(() => {
-          for (let i = 0; i < this.alarmCollection.length; i++)
-            checkClock(
-              this.alarmCollection[i].value,
-              this.alarmCollection[i].result
-            );
-        }, 30000);
+        this.timerId = setInterval(
+          () =>
+            // {
+            // for (let i = 0; i < this.alarmCollection.length; i++)
+            // checkClock(
+            //   this.alarmCollection[i].value,
+            //   this.alarmCollection[i].result
+            // );
+            this.alarmCollection.forEach((alarm) =>
+              checkClock(alarm.value, alarm.result)
+            ),
+          // },
+          30000
+        );
       }
     }
   }
@@ -57,7 +64,15 @@ class AlarmClock {
       console.log(alarm.subject, alarm.value)
     );
   }
+
+  clearAlarms() {
+    this.stop();
+    let alarmNumbers = this.alarmCollection.length;
+    this.alarmCollection.splice(0, alarmNumbers);
+    console.log(this.alarmCollection);
+  }
 }
+
 function getCurrentFormattedTime() {
   let humanFormat = new Date();
   let DateHoursMinutes = humanFormat.toString();
