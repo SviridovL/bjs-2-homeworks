@@ -30,15 +30,11 @@ class AlarmClock {
   }
 
   start() {
-    // getCurrentFormattedTime();
     function checkClock(time, result) {
       getCurrentFormattedTime();
       if (time === HM) console.log(result);
     }
     {
-      //  if (HM === this.alarmCollection[i].value) {
-      //  console.log(this.alarmCollection[i].result);
-      // }
       if (this.timerId === null) {
         this.timerId = setInterval(() => {
           for (let i = 0; i < this.alarmCollection.length; i++)
@@ -50,21 +46,21 @@ class AlarmClock {
       }
     }
   }
+  stop() {
+    if (this.timerId) {
+      clearInterval(this.timerId);
+      this.timerId = null;
+    }
+  }
+  printAlarms() {
+    this.alarmCollection.forEach((alarm) =>
+      console.log(alarm.subject, alarm.value)
+    );
+  }
 }
-
 function getCurrentFormattedTime() {
   let humanFormat = new Date();
   let DateHoursMinutes = humanFormat.toString();
-  HM = DateHoursMinutes.slice(16, 21);
+  let HM = DateHoursMinutes.slice(16, 21);
   return HM;
 }
-
-//   if (this.timerId !== null) {
-//   }
-//   const check = () => {
-//     this.AlarmCollection.forEach((element) => {
-//       checkClock(value);
-//     });
-//   };
-//   setInterval(checkClock, 1000);
-// }
