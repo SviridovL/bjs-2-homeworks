@@ -29,22 +29,38 @@ class AlarmClock {
     }
   }
 
-  start() {
-    const getCurrentFormattedTime = () => {
-      let humanFormat = new Date();
-      let DateHoursMinutes = humanFormat.toString();
-      let HM = DateHoursMinutes.slice(16, 21);
-      return HM;
+  start(time, result) {
+    // getCurrentFormattedTime();
+    const checkClock = (time, result) => {
+      getCurrentFormattedTime();
+      if (time === HM) console.log(result);
     };
-    getCurrentFormattedTime();
-    //let HM = getCurrentFormattedTime();
     for (let i = 0; i < this.alarmCollection.length; i++) {
-      console.log(this);
-      if (HM === this.alarmCollection[i].value) {
-        console.log(this.alarmCollection[i].result);
+      //  if (HM === this.alarmCollection[i].value) {
+      //  console.log(this.alarmCollection[i].result);
+      // }
+      if (this.timerId === null) {
+        this.timerId = setInterval(
+          () => {
+            checkClock(
+              this.alarmCollection[i].value,
+              this.alarmCollection[i].result
+            );
+          },
+          10000,
+          null
+        );
+       
       }
     }
   }
+}
+
+function getCurrentFormattedTime() {
+  let humanFormat = new Date();
+  let DateHoursMinutes = humanFormat.toString();
+  HM = DateHoursMinutes.slice(16, 21);
+  return HM;
 }
 
 //   if (this.timerId !== null) {
