@@ -29,28 +29,24 @@ class AlarmClock {
     }
   }
 
-  start(time, result) {
+  start() {
     // getCurrentFormattedTime();
-    const checkClock = (time, result) => {
+    function checkClock(time, result) {
       getCurrentFormattedTime();
       if (time === HM) console.log(result);
-    };
-    for (let i = 0; i < this.alarmCollection.length; i++) {
+    }
+    {
       //  if (HM === this.alarmCollection[i].value) {
       //  console.log(this.alarmCollection[i].result);
       // }
       if (this.timerId === null) {
-        this.timerId = setInterval(
-          () => {
+        this.timerId = setInterval(() => {
+          for (let i = 0; i < this.alarmCollection.length; i++)
             checkClock(
               this.alarmCollection[i].value,
               this.alarmCollection[i].result
             );
-          },
-          10000,
-          null
-        );
-       
+        }, 30000);
       }
     }
   }
