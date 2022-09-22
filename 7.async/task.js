@@ -30,24 +30,18 @@ class AlarmClock {
   }
 
   start() {
-    function checkClock(time, result) {
-      getCurrentFormattedTime();
-      if (time === HM) console.log(result);
+    function checkClock(time, result, HM) {
+      if (time === HM) {
+        console.log(result);
+      }
     }
     {
       if (this.timerId === null) {
         this.timerId = setInterval(
           () =>
-            // {
-            // for (let i = 0; i < this.alarmCollection.length; i++)
-            // checkClock(
-            //   this.alarmCollection[i].value,
-            //   this.alarmCollection[i].result
-            // );
             this.alarmCollection.forEach((alarm) =>
-              checkClock(alarm.value, alarm.result)
+              checkClock(alarm.value, alarm.result, getCurrentFormattedTime())
             ),
-          // },
           30000
         );
       }
