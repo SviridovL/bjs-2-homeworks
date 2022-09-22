@@ -29,6 +29,13 @@ class AlarmClock {
     }
   }
 
+  getCurrentFormattedTime() {
+    let humanFormat = new Date();
+    let DateHoursMinutes = humanFormat.toString();
+    let HM = DateHoursMinutes.slice(16, 21);
+    return HM;
+  }
+
   start() {
     function checkClock(time, result, HM) {
       if (time === HM) {
@@ -40,9 +47,13 @@ class AlarmClock {
         this.timerId = setInterval(
           () =>
             this.alarmCollection.forEach((alarm) =>
-              checkClock(alarm.value, alarm.result, getCurrentFormattedTime())
+              checkClock(
+                alarm.value,
+                alarm.result,
+                this.getCurrentFormattedTime()
+              )
             ),
-          30000
+          10000
         );
       }
     }
@@ -65,11 +76,4 @@ class AlarmClock {
     this.alarmCollection.splice(0, alarmNumbers);
     console.log(this.alarmCollection);
   }
-}
-
-function getCurrentFormattedTime() {
-  let humanFormat = new Date();
-  let DateHoursMinutes = humanFormat.toString();
-  let HM = DateHoursMinutes.slice(16, 21);
-  return HM;
 }
